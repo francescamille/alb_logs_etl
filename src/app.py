@@ -95,6 +95,8 @@ def transform(data):
     
     # Log dropped data
     dropped_data.to_csv("dropped_data.csv")
+    
+    return data[["date", "time", "client_ip", "response_code", "request_path", "pageurl", "action", "country", "browser", "device", "os"]]
 
 def load(target_file, data):
     pass
