@@ -63,9 +63,23 @@ def transform(data):
     
     # Rename alb_status_code to response_code
     data = data.rename(columns={"alb_status_code": "response_code"})
+    
+    # Process url
+    data = data.apply(process_url, axis=1)
+    
 
 def load(target_file, data):
     pass
+def process_url(row):
+    url = urlsplit(row["request_url"])
+    row["request_path"] = url.path
+    # Parse query
+    query = parse_qs(url.query)
+    row["pageurl"] = unquote(query["pageurl"][0]) # Decode pageurl
+    row["action"] = query["action"][0]
+    row["country"] = query["country"][0].upper()
+    return row
+
 
 # Add simple logging
 def log(message):
