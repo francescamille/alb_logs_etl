@@ -99,7 +99,8 @@ def transform(data):
     return data[["date", "time", "client_ip", "response_code", "request_path", "pageurl", "action", "country", "browser", "device", "os"]]
 
 def load(target_file, data):
-    pass
+    data.to_parquet(target_file, compression=None)
+
 def process_url(row):
     url = urlsplit(row["request_url"])
     row["request_path"] = url.path
