@@ -76,6 +76,13 @@ def transform(data):
     # Drop any row with missing value
     dropped_data = data[data.isna().any(axis=1)]
     data = data.dropna()
+    
+    # Drop rows with path != /prod/vast 
+    # Notes: Used `/prod/vast` instead of `/prod/getvastxml`
+    #        Sample logs only contain `/prod/vast`
+    dropped_path = data[~data["request_path"].isin(["/prod/vast"])]
+    data = data[data["request_path"].isin(["/prod/vast"])]
+    dropped_data = pd.concat([dropped_data, dropped_path], ignore_index=True)
 
 def load(target_file, data):
     pass
