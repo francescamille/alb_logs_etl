@@ -55,7 +55,11 @@ def extract(file_path):
     return data[["timestamp", "client_ip", "alb_status_code", "request_url", "user_agent"]]
 
 def transform(data):
-    pass
+    # Convert timestamp to separate date and time
+    # Handle invalid dates with `errors='coerce'`
+    data["datetime"] = pd.to_datetime(data["timestamp"], errors='coerce')
+    data["date"] = data["datetime"].dt.date
+    data["time"] = data["datetime"].dt.time
 
 def load(target_file, data):
     pass
