@@ -87,6 +87,11 @@ def transform(data):
     dropped_path = data[~data["request_path"].isin(["/prod/vast"])]
     data = data[data["request_path"].isin(["/prod/vast"])]
     dropped_data = pd.concat([dropped_data, dropped_path], ignore_index=True)
+    
+    # Drop rows with country not in alpha-2 code format
+    dropped_country = data[~data["country"].isin(country_codes["Alpha-2 code"])] # dropped_data
+    dropped_data = pd.concat([dropped_data, dropped_country], ignore_index=True)
+    data = data[data["country"].isin(country_codes["Alpha-2 code"])]
 
 def load(target_file, data):
     pass
