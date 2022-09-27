@@ -60,6 +60,9 @@ def transform(data):
     data["datetime"] = pd.to_datetime(data["timestamp"], errors='coerce')
     data["date"] = data["datetime"].dt.date
     data["time"] = data["datetime"].dt.time
+    
+    # Rename alb_status_code to response_code
+    data = data.rename(columns={"alb_status_code": "response_code"})
 
 def load(target_file, data):
     pass
