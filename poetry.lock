@@ -1,0 +1,98 @@
+[[package]]
+name = "numpy"
+version = "1.23.3"
+description = "NumPy is the fundamental package for array computing with Python."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
+name = "pandas"
+version = "1.5.0"
+description = "Powerful data structures for data analysis, time series, and statistics"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+numpy = [
+    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
+    {version = ">=1.20.3", markers = "python_version < \"3.10\""},
+]
+python-dateutil = ">=2.8.1"
+pytz = ">=2020.1"
+
+[package.extras]
+test = ["pytest-xdist (>=1.31)", "pytest (>=6.0)", "hypothesis (>=5.5.3)"]
+
+[[package]]
+name = "pyarrow"
+version = "9.0.0"
+description = "Python library for Apache Arrow"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+numpy = ">=1.16.6"
+
+[[package]]
+name = "python-dateutil"
+version = "2.8.2"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
+name = "pytz"
+version = "2022.2.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "ua-parser"
+version = "0.16.1"
+description = "Python port of Browserscope's user agent parser"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "user-agents"
+version = "2.2.0"
+description = "A library to identify devices (phones, tablets) and their capabilities by parsing browser user agent strings."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+ua-parser = ">=0.10.0"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "271f9a70e9964989a884c101ca25192c2528698ac17d7c7d270dbaef60ef2d18"
+
+[metadata.files]
+numpy = []
+pandas = []
+pyarrow = []
+python-dateutil = []
+pytz = []
+six = []
+ua-parser = []
+user-agents = []

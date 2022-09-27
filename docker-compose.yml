@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  exam_app:
+    build: .
+    container_name: exam_app
+    command: [python, /app/src/app.py]
+    stdin_open: true
+    tty: true
+    volumes:
+      - $PWD:/app
