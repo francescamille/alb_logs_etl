@@ -92,6 +92,9 @@ def transform(data):
     dropped_country = data[~data["country"].isin(country_codes["Alpha-2 code"])] # dropped_data
     dropped_data = pd.concat([dropped_data, dropped_country], ignore_index=True)
     data = data[data["country"].isin(country_codes["Alpha-2 code"])]
+    
+    # Log dropped data
+    dropped_data.to_csv("dropped_data.csv")
 
 def load(target_file, data):
     pass
