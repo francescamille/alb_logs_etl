@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from urllib.parse import unquote, urlsplit, parse_qs
+from user_agents import parse
 import re
 import pandas as pd
 
@@ -68,6 +69,9 @@ def transform(data):
     # Process url
     data = data.apply(process_url, axis=1)
     
+    # Get user agent info
+    data = data.apply(process_user_agent, axis=1)
+    
 
 def load(target_file, data):
     pass
@@ -81,6 +85,10 @@ def process_url(row):
     row["country"] = query["country"][0].upper()
     return row
 
+def process_user_agent(row):
+    ua = parse(row["user_agent"])
+    row["device"], row["os"], row["browser"] = str(ua).split(" / ")
+    return row
 
 # Add simple logging
 def log(message):
