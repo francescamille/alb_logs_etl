@@ -72,6 +72,10 @@ def transform(data):
     # Get user agent info
     data = data.apply(process_user_agent, axis=1)
     
+    
+    # Drop any row with missing value
+    dropped_data = data[data.isna().any(axis=1)]
+    data = data.dropna()
 
 def load(target_file, data):
     pass
